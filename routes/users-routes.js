@@ -1,7 +1,7 @@
-const express = require("express");
-const { check } = require("express-validator");
+import express from "express";
+import { check } from "express-validator";
+import * as usersController from "../controllers/users-controllers.js";
 
-const usersController = require("../controllers/users-controllers");
 const router = express.Router();
 router.get("/", usersController.getUsers);
 
@@ -9,11 +9,8 @@ router.post(
   "/signup",
   [
     check("fname").notEmpty(),
-
     check("lname").notEmpty(),
-
     check("email").normalizeEmail().isEmail(),
-
     check("password").isLength({ min: 6 }),
   ],
   usersController.signup
@@ -21,4 +18,4 @@ router.post(
 
 router.post("/login", usersController.login);
 
-module.exports = router;
+export default router;

@@ -1,7 +1,8 @@
-const { validationResult } = require("express-validator");
-const jwt = require("jsonwebtoken");
+import { validationResult } from "express-validator";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
-const User = require("../models/user");
+import User from "../models/user.js";
 
 // --- GET USERS ---
 const getUsers = async (req, res, next) => {
@@ -149,6 +150,4 @@ const login = async (req, res, next) => {
 };
 
 
-exports.getUsers = getUsers;
-exports.signup = signup;
-exports.login = login;
+export { getUsers, signup, login };
